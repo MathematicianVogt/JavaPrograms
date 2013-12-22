@@ -27,7 +27,7 @@ import javax.swing.JTextField;
  * 
  * @author Ryan Vogt
  * A gui where users can input information
- * about their location
+ * about their locations
  */
 public class AddressScreen extends JFrame {
 	// class component objects
