@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.Scanner;
-public class printingThreads
+public class printingThreads implements Runnable
 {
 
 	messageBox myBox;
@@ -14,9 +14,10 @@ public class printingThreads
 	}
 
 	public void run()
-	{
+	{	System.out.println("RUNING NOW");
 		if(myBox.canSend())
-		{
+		{	
+			System.out.println("TRYING TO PRINT");
 
 			myBox.printMessage();
 			myBox.doneSending();

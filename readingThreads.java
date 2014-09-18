@@ -35,14 +35,15 @@ public class readingThreads implements Runnable
 	}
 	public void run()
 	{
-
 		while(fileReading.hasNext())
 		{
 
 			String line=fileReading.nextLine();
 			if(line.contains(wordToFind))
 			{
+				System.out.println("Found something");
 				myBox.readyToSend();
+
 
 
 			}

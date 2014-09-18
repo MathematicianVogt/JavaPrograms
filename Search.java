@@ -1,20 +1,22 @@
 //Ryan Vogt
 //class imports
 import java.io.*;
-import java.util.Scanner;
-import java.util.ArrayList;
+import java.util.*;
+
 
 //Ryan Vogt
 //Class Search
 public class Search
 {
 	
+	public Search()
+	{
 
+	}
 	
 	public static void main(String[] args)
 	{	
 
-		System.out.println("Hi");
 		if(args.length<2)
 		{
 
@@ -40,14 +42,27 @@ public class Search
 				{
 
 					 allBoxs.add(new messageBox(allWords[k],allFiles[i]));
-					 System.out.println(allWords[k]);
-					 System.out.println(allFiles[i]);
 
 
 
 				}
+			}
+			Iterator a=allBoxs.iterator();
+			while(a.hasNext())
+			{
 
+				messageBox currentBox=(messageBox) a.next();
+				printingThreads currentThread = new printingThreads(currentBox);
+				currentThread.run();
 
+			}
+			Iterator b = allBoxs.iterator();
+			while(b.hasNext())
+			{
+
+				messageBox currentBox= (messageBox) b.next();
+				readingThreads currentThread1 = new readingThreads(currentBox);
+				currentThread1.run();
 
 			}
 
