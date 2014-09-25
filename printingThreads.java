@@ -3,9 +3,9 @@ import java.util.Scanner;
 public class printingThreads implements Runnable
 {
 
-	messageBox myBox;
-	String wordToFind;
-	String fileToSearch;
+	private messageBox myBox;
+	private String wordToFind;
+	private String fileToSearch;
 	public printingThreads(messageBox myBox)
 	{
 
@@ -14,17 +14,26 @@ public class printingThreads implements Runnable
 	}
 
 	public void run()
-	{	System.out.println("RUNING NOW");
-		if(myBox.canSend())
+	{	//System.out.println("RUNING NOW");
+		
+		while(myBox.getFinishedBox())
 		{	
-			System.out.println("TRYING TO PRINT");
+			
+			
 
-			myBox.printMessage();
-			myBox.doneSending();
+			//System.out.println("GOT HERE");
+			//System.out.println("TRUTH VALUE " + myBox.canSend());
+			if(myBox.canSend())
+			{	
+				//System.out.println("TRYING TO PRINT");
+
+				myBox.printMessage();
+				myBox.doneSending();
+				break;
 
 
+			}
 		}
-
 
 
 	}

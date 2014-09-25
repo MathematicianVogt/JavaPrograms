@@ -4,11 +4,11 @@ import java.io.*;
 import java.util.Scanner;
 public class readingThreads implements Runnable
 {
-	messageBox myBox;
-	String wordToFind;
-	String fileToRead;
-	Scanner fileReading;
-	File fileToBeRead;
+	private messageBox myBox;
+	private String wordToFind;
+	private String fileToRead;
+	private Scanner fileReading;
+	private File fileToBeRead;
 	public readingThreads(messageBox myBox)
 	{
 		this.myBox=myBox;
@@ -18,7 +18,7 @@ public class readingThreads implements Runnable
 
 
 	}
-	public void create()
+	public synchronized void create()
 	{
 			try
 			{
@@ -29,7 +29,8 @@ public class readingThreads implements Runnable
 			catch (Exception e)
 			{
 
-				System.out.println("Cant Find File");
+				System.out.println("Cant Find File Program will now exit");
+				System.exit(0);
 
 			}
 	}
@@ -38,11 +39,18 @@ public class readingThreads implements Runnable
 		while(fileReading.hasNext())
 		{
 
-			String line=fileReading.nextLine();
-			if(line.contains(wordToFind))
+			String line=fileReading.nextLine().toLowerCase();
+			String myword=wordToFind.toLowerCase();
+			//System.out.println("WORD TO FIND " + wordToFind +" FOUND IN " + line + " IS" +line.contains(myword) );
+				
+			if(line.contains(myword))
 			{
-				System.out.println("Found something");
+				//System.out.println("READY TO PRINT THE WORD "  + myword  + " Found in the line" + line);
+				
 				myBox.readyToSend();
+				//System.out.println(myBox.canSend());
+				//System.out.println("Found");
+				break;
 
 
 
@@ -50,6 +58,10 @@ public class readingThreads implements Runnable
 
 
 		}
+		//System.out.println("k");
+		myBox.finishedReading();
+		//System.out.println("B: " +myBox.getFinishedBox());
+
 
 
 

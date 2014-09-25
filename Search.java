@@ -1,7 +1,9 @@
+//try rwd_grd project1-1 *.java mytest.txt
 //Ryan Vogt
 //class imports
 import java.io.*;
 import java.util.*;
+import java.lang.*;
 
 
 //Ryan Vogt
@@ -47,26 +49,30 @@ public class Search
 
 				}
 			}
+			
+
 			Iterator a=allBoxs.iterator();
 			while(a.hasNext())
 			{
 
 				messageBox currentBox=(messageBox) a.next();
 				printingThreads currentThread = new printingThreads(currentBox);
-				currentThread.run();
+				Thread myThread = new Thread(currentThread);
+				myThread.start();
 
 			}
+			
+
 			Iterator b = allBoxs.iterator();
 			while(b.hasNext())
 			{
 
 				messageBox currentBox= (messageBox) b.next();
 				readingThreads currentThread1 = new readingThreads(currentBox);
-				currentThread1.run();
+				Thread thisThread = new Thread(currentThread1);
+				thisThread.start();
 
 			}
-
-
 
 
 		}
