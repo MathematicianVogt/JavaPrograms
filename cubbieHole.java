@@ -17,7 +17,7 @@ public class cubbieHole
 	//@return fileCount, the current number of files the cubbiehole is working on
 	public synchronized int getFileCount()
 	{
-		
+
 		return fileCount;
 
 	}
@@ -40,16 +40,23 @@ public class cubbieHole
 
 
 	}
+	//gets the word field of the cubbie hole
+	//@return word the word that this cubbie hole is looking for
 	public  synchronized String getWord()
 	{
 
 		return word;
 	}
+	//gets the fileList of the cubbiehole which is watched by the printing thread
+	//@return fileList, the list of files where the word of this object is found
 	public  synchronized ArrayList<String> getFileList()
 	{
 
 		return fileList;
 	}
+
+	//state of the cubbie hole to tell a print thread it is ready to print
+	//@return if the cubbie is ready to print or not
 	public  synchronized Boolean canPrint()
 	{
 		if(numberOfNonNullEnteries(fileList)>0)
@@ -67,6 +74,7 @@ public class cubbieHole
 
 
 	}
+	//if the cubie is reading to print, then print one by one
 	public  synchronized void beginPrinting()
 	{
 		printMessage(word,fileList.get(0));
@@ -75,13 +83,14 @@ public class cubbieHole
 
 
 	}
+	//tells if the cubbie is empty
 	public  synchronized Boolean listEmpty()
 	{
 
 		return fileList.isEmpty();
 
 	}
-
+	//the message of what a cubbie will share via a print thread.
 	public static  synchronized void printMessage(String word,String specificFile)
 	{
 		System.out.println(word.toLowerCase() + " " + specificFile);

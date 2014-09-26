@@ -15,7 +15,8 @@ public class search1
 	{
 
 	}
-	
+	//builds a map from a cubbie list
+	//@return a map representation of a word and its related cubbieHole
 	public static Map<String,cubbieHole> buildMap(ArrayList<cubbieHole> myList)
 	{
 
@@ -32,6 +33,7 @@ public class search1
 
 
 	}
+	//main method
 	public static void main(String[] args)
 	{	
 

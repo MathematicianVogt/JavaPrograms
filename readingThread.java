@@ -4,11 +4,11 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.*;
 public class readingThread implements Runnable
-{
+{	//class variables
 	private String fileToRead;
 	private Scanner fileReading;
 	private Map<String,cubbieHole> wordAndfileList;
-
+	//class constructor
 	public readingThread(String fileName, Map <String, cubbieHole> wordAndfileList)
 	{
 		fileToRead=fileName;
@@ -17,6 +17,7 @@ public class readingThread implements Runnable
 
 
 	}
+	//creates a reading the possibility for a file to be read
 	public  synchronized  void create()
 	{
 			try
@@ -36,7 +37,8 @@ public class readingThread implements Runnable
 
 	}
 
-
+	//run method which reads a file and updates the cubbieHole object while reading to then
+	//be printined by the printing thread
 	public void run()
 	{	cubbieHole currentFileList;
 		ArrayList<String> deleteList=new ArrayList<String>();

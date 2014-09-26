@@ -1,5 +1,4 @@
 //try rwd_grd project1-1 *.java mytest.txt
-//NOTE RANDOMLY GIVES ENTIRE ANSWER OR SUBSET OF ANSWER
 //Ryan Vogt
 //class imports
 import java.io.*;
@@ -9,7 +8,6 @@ import java.lang.*;
 
 //Ryan Vogt
 //Class Search
-//Opens files, searches for words, if found tells where they are found
 public class Search
 {
 	
@@ -17,7 +15,25 @@ public class Search
 	{
 
 	}
-	
+	//builds a map from a cubbie list
+	//@return a map representation of a word and its related cubbieHole
+	public static Map<String,cubbieHole> buildMap(ArrayList<cubbieHole> myList)
+	{
+
+		Iterator b = myList.iterator();
+		Map<String,cubbieHole> myMap = new HashMap<String,cubbieHole>();
+		while(b.hasNext())
+		{
+				
+			cubbieHole currentOne = (cubbieHole) b.next();
+			myMap.put(currentOne.getWord(),currentOne);
+		}
+
+		return myMap;
+
+
+	}
+	//main method
 	public static void main(String[] args)
 	{	
 
@@ -38,47 +54,47 @@ public class Search
 		{
 
 			String[] allFiles=args[0].split(",");
+			int fileSize=allFiles.length;
 			String[] allWords=args[1].split(",");
-			ArrayList<messageBox> allBoxs = new ArrayList<messageBox>();
-			for (int i=0; i<allFiles.length;i++)
+			ArrayList<cubbieHole> myList = new ArrayList<cubbieHole>();
+			for (int i=0; i<allWords.length;i++)
 			{
-				for(int k=0; k<allWords.length; k++)
-				{
-
-					 allBoxs.add(new messageBox(allWords[k],allFiles[i]));
+				
+				myList.add(new cubbieHole(allWords[i],new ArrayList<String>(),fileSize));
 
 
-
-				}
 			}
 			
 
-			Iterator a=allBoxs.iterator();
+			Iterator a=myList.iterator();
 			while(a.hasNext())
 			{
 
-				messageBox currentBox=(messageBox) a.next();
-				printingThreads currentThread = new printingThreads(currentBox);
+				printingThread currentThread = new printingThread((cubbieHole) a.next());
 				Thread myThread = new Thread(currentThread);
 				myThread.start();
 
 			}
 			
 
-			Iterator b = allBoxs.iterator();
-			while(b.hasNext())
-			{
+			
+			
 
-				messageBox currentBox= (messageBox) b.next();
-				readingThreads currentThread1 = new readingThreads(currentBox);
-				Thread thisThread = new Thread(currentThread1);
-				thisThread.start();
-
-			}
+				for(int i =0; i<allFiles.length; i++)
+				{
+					
+					Map<String,cubbieHole> myMap=buildMap(myList);
+					readingThread currentThread1 = new readingThread(allFiles[i],myMap);
+					Thread thisThread = new Thread(currentThread1);
+					thisThread.start();
+				}
+			
+			
 
 
 		}
 	
 
 	}
+
 }
