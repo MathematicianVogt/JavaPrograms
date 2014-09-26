@@ -1,4 +1,5 @@
 //try rwd_grd project1-1 *.java mytest.txt
+//NOTE RANDOMLY GIVES ENTIRE ANSWER OR SUBSET OF ANSWER
 //Ryan Vogt
 //class imports
 import java.io.*;
@@ -8,6 +9,7 @@ import java.lang.*;
 
 //Ryan Vogt
 //Class Search
+//Opens files, searches for words, if found tells where they are found
 public class Search
 {
 	
@@ -79,5 +81,4 @@ public class Search
 	
 
 	}
-
 }

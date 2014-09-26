@@ -4,11 +4,13 @@ import java.io.*;
 import java.util.Scanner;
 public class readingThreads implements Runnable
 {
+	//class variables
 	private messageBox myBox;
 	private String wordToFind;
 	private String fileToRead;
 	private Scanner fileReading;
 	private File fileToBeRead;
+	//class constructor
 	public readingThreads(messageBox myBox)
 	{
 		this.myBox=myBox;
@@ -18,6 +20,8 @@ public class readingThreads implements Runnable
 
 
 	}
+	//syncronized method create
+	//creates a scanner object in order to read a file
 	public synchronized void create()
 	{
 			try
@@ -34,6 +38,9 @@ public class readingThreads implements Runnable
 
 			}
 	}
+	//run method
+	//runs continously to search through a file
+	//if a word is found notifies the printingThread to print
 	public void run()
 	{
 		while(fileReading.hasNext())

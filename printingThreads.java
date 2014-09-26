@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Scanner;
 public class printingThreads implements Runnable
 {
-
+	//class methods
 	private messageBox myBox;
 	private String wordToFind;
 	private String fileToSearch;
@@ -12,7 +12,7 @@ public class printingThreads implements Runnable
 			this.myBox=myBox;
 
 	}
-
+	//run method to print out occurences of a found work in readThreads
 	public void run()
 	{	//System.out.println("RUNING NOW");
 		
