@@ -71,7 +71,8 @@ public class readingThread implements Runnable
 
 				String lowerCurrentKey = currentKey.toLowerCase();
 				//System.out.println(lowerCurrentKey + " KEY THEN LINE " +line);
-				if(line.contains(lowerCurrentKey))
+				String[] myWords=line.split(" ");
+				if(Arrays.asList(myWords).contains(lowerCurrentKey))
 				{
 					//System.out.println(lowerCurrentKey + " Found key");
 					try
